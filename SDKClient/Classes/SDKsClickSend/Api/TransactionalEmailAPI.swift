@@ -19,7 +19,7 @@ open class TransactionalEmailAPI {
      - parameter dateTo: (query) End date (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func emailHistoryExportGet(filename: String, dateFrom: Int? = nil, dateTo: Int? = nil, completion: @escaping ((_ data: URL?,_ error: Error?) -> Void)) {
+    open class func emailHistoryExportGet(filename: String, dateFrom: Int? = nil, dateTo: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         emailHistoryExportGetWithRequestBuilder(filename: filename, dateFrom: dateFrom, dateTo: dateTo).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -39,9 +39,9 @@ open class TransactionalEmailAPI {
      - parameter dateFrom: (query) Start date (optional)
      - parameter dateTo: (query) End date (optional)
 
-     - returns: RequestBuilder<URL> 
+     - returns: RequestBuilder<String> 
      */
-    open class func emailHistoryExportGetWithRequestBuilder(filename: String, dateFrom: Int? = nil, dateTo: Int? = nil) -> RequestBuilder<URL> {
+    open class func emailHistoryExportGetWithRequestBuilder(filename: String, dateFrom: Int? = nil, dateTo: Int? = nil) -> RequestBuilder<String> {
         let path = "/email/history/export"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -53,7 +53,7 @@ open class TransactionalEmailAPI {
             "date_to": dateTo?.encodeToJSON()
         ])
 
-        let requestBuilder: RequestBuilder<URL>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

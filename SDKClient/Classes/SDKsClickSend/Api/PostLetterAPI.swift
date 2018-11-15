@@ -17,7 +17,7 @@ open class PostLetterAPI {
      - parameter filename: (query) Filename to export to 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func postLettersExportGet(filename: String, completion: @escaping ((_ data: URL?,_ error: Error?) -> Void)) {
+    open class func postLettersExportGet(filename: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         postLettersExportGetWithRequestBuilder(filename: filename).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -35,9 +35,9 @@ open class PostLetterAPI {
      
      - parameter filename: (query) Filename to export to 
 
-     - returns: RequestBuilder<URL> 
+     - returns: RequestBuilder<String> 
      */
-    open class func postLettersExportGetWithRequestBuilder(filename: String) -> RequestBuilder<URL> {
+    open class func postLettersExportGetWithRequestBuilder(filename: String) -> RequestBuilder<String> {
         let path = "/post/letters/export"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -47,7 +47,7 @@ open class PostLetterAPI {
             "filename": filename
         ])
 
-        let requestBuilder: RequestBuilder<URL>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

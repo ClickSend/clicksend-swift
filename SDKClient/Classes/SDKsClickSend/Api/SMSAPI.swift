@@ -93,7 +93,7 @@ open class SMSAPI {
      - parameter filename: (query) Filename to download history as 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsHistoryExportGet(filename: String, completion: @escaping ((_ data: URL?,_ error: Error?) -> Void)) {
+    open class func smsHistoryExportGet(filename: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsHistoryExportGetWithRequestBuilder(filename: filename).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -111,9 +111,9 @@ open class SMSAPI {
      
      - parameter filename: (query) Filename to download history as 
 
-     - returns: RequestBuilder<URL> 
+     - returns: RequestBuilder<String> 
      */
-    open class func smsHistoryExportGetWithRequestBuilder(filename: String) -> RequestBuilder<URL> {
+    open class func smsHistoryExportGetWithRequestBuilder(filename: String) -> RequestBuilder<String> {
         let path = "/sms/history/export"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -123,7 +123,7 @@ open class SMSAPI {
             "filename": filename
         ])
 
-        let requestBuilder: RequestBuilder<URL>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

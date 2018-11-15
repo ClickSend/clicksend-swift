@@ -183,7 +183,7 @@ open class EmailMarketingAPI {
      - parameter dateTo: (query) End date (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func emailCampaignHistoryExportGet(emailCampaignId: Int, dateFrom: Int? = nil, dateTo: Int? = nil, completion: @escaping ((_ data: URL?,_ error: Error?) -> Void)) {
+    open class func emailCampaignHistoryExportGet(emailCampaignId: Int, dateFrom: Int? = nil, dateTo: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         emailCampaignHistoryExportGetWithRequestBuilder(emailCampaignId: emailCampaignId, dateFrom: dateFrom, dateTo: dateTo).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -203,9 +203,9 @@ open class EmailMarketingAPI {
      - parameter dateFrom: (query) Start date (optional)
      - parameter dateTo: (query) End date (optional)
 
-     - returns: RequestBuilder<URL> 
+     - returns: RequestBuilder<String> 
      */
-    open class func emailCampaignHistoryExportGetWithRequestBuilder(emailCampaignId: Int, dateFrom: Int? = nil, dateTo: Int? = nil) -> RequestBuilder<URL> {
+    open class func emailCampaignHistoryExportGetWithRequestBuilder(emailCampaignId: Int, dateFrom: Int? = nil, dateTo: Int? = nil) -> RequestBuilder<String> {
         var path = "/email-campaigns/{email_campaign_id}/history/export"
         let emailCampaignIdPreEscape = "\(emailCampaignId)"
         let emailCampaignIdPostEscape = emailCampaignIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -219,7 +219,7 @@ open class EmailMarketingAPI {
             "date_to": dateTo?.encodeToJSON()
         ])
 
-        let requestBuilder: RequestBuilder<URL>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

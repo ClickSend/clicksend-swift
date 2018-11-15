@@ -93,7 +93,7 @@ open class VoiceAPI {
      - parameter filename: (query) Filename to export to 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func voiceHistoryExportGet(filename: String, completion: @escaping ((_ data: URL?,_ error: Error?) -> Void)) {
+    open class func voiceHistoryExportGet(filename: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         voiceHistoryExportGetWithRequestBuilder(filename: filename).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -111,9 +111,9 @@ open class VoiceAPI {
      
      - parameter filename: (query) Filename to export to 
 
-     - returns: RequestBuilder<URL> 
+     - returns: RequestBuilder<String> 
      */
-    open class func voiceHistoryExportGetWithRequestBuilder(filename: String) -> RequestBuilder<URL> {
+    open class func voiceHistoryExportGetWithRequestBuilder(filename: String) -> RequestBuilder<String> {
         let path = "/voice/history/export"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -123,7 +123,7 @@ open class VoiceAPI {
             "filename": filename
         ])
 
-        let requestBuilder: RequestBuilder<URL>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
