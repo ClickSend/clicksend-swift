@@ -314,7 +314,7 @@ open class ContactAPI {
 
     /**
      Transfer contact to another list
-     - PUT /lists/{from_list_id}/contacts/{contact_id}/{to_list_id}
+     - PUT /lists/{from_list_id}/contacts/{contact_id}/transfer/{to_list_id}
      - Transfer contact to another list
      - BASIC:
        - type: basic
@@ -328,7 +328,7 @@ open class ContactAPI {
      - returns: RequestBuilder<String> 
      */
     open class func listsTransferContactPutWithRequestBuilder(fromListId: Int, contactId: Int, toListId: Int) -> RequestBuilder<String> {
-        var path = "/lists/{from_list_id}/contacts/{contact_id}/{to_list_id}"
+        var path = "/lists/{from_list_id}/contacts/{contact_id}/transfer/{to_list_id}"
         let fromListIdPreEscape = "\(fromListId)"
         let fromListIdPostEscape = fromListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{from_list_id}", with: fromListIdPostEscape, options: .literal, range: nil)

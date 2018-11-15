@@ -36,7 +36,7 @@ public struct DeliveryIssue: Codable {
         case type
         case _description = "description"
         case clientComments = "client_comments"
-        case emailAddress = "email-address"
+        case emailAddress = "email_address"
     }
 
 
