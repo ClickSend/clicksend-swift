@@ -359,10 +359,11 @@ open class EmailMarketingAPI {
      Edit email campaign
      
      - parameter emailCampaignId: (path) Allowed email campaign id 
+     - parameter emailCampaign: (body) Email model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func emailCampaignPut(emailCampaignId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        emailCampaignPutWithRequestBuilder(emailCampaignId: emailCampaignId).execute { (response, error) -> Void in
+    open class func emailCampaignPut(emailCampaignId: Int, emailCampaign: EmailCampaign, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        emailCampaignPutWithRequestBuilder(emailCampaignId: emailCampaignId, emailCampaign: emailCampaign).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -378,22 +379,23 @@ open class EmailMarketingAPI {
      - examples: [{contentType=application/json, example=""}]
      
      - parameter emailCampaignId: (path) Allowed email campaign id 
+     - parameter emailCampaign: (body) Email model 
 
      - returns: RequestBuilder<String> 
      */
-    open class func emailCampaignPutWithRequestBuilder(emailCampaignId: Int) -> RequestBuilder<String> {
+    open class func emailCampaignPutWithRequestBuilder(emailCampaignId: Int, emailCampaign: EmailCampaign) -> RequestBuilder<String> {
         var path = "/email-campaigns/{email_campaign_id}"
         let emailCampaignIdPreEscape = "\(emailCampaignId)"
         let emailCampaignIdPostEscape = emailCampaignIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{email_campaign_id}", with: emailCampaignIdPostEscape, options: .literal, range: nil)
         let URLString = SDKClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailCampaign)
+
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**
@@ -455,7 +457,7 @@ open class EmailMarketingAPI {
 
     /**
      Send verification token
-     - GET /email/address-verify/{email_address_id}/send
+     - PUT /email/address-verify/{email_address_id}/send
      - Send verification token
      - BASIC:
        - type: basic
@@ -478,7 +480,7 @@ open class EmailMarketingAPI {
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
@@ -579,7 +581,7 @@ open class EmailMarketingAPI {
 
     /**
      Verify email address using verification token
-     - GET /email/address-verify/{email_address_id}/verify/{activation_token}
+     - PUT /email/address-verify/{email_address_id}/verify/{activation_token}
      - Verify email address using verification token
      - BASIC:
        - type: basic
@@ -606,7 +608,7 @@ open class EmailMarketingAPI {
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
 }
