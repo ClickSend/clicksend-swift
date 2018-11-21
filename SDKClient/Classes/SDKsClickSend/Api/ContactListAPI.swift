@@ -265,10 +265,11 @@ open class ContactListAPI {
      Remove duplicate contacts
      
      - parameter listId: (path) Your list id 
+     - parameter fields: (body) Fields model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func listsRemoveDuplicatesByListIdPut(listId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        listsRemoveDuplicatesByListIdPutWithRequestBuilder(listId: listId).execute { (response, error) -> Void in
+    open class func listsRemoveDuplicatesByListIdPut(listId: Int, fields: Fields, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        listsRemoveDuplicatesByListIdPutWithRequestBuilder(listId: listId, fields: fields).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -284,22 +285,23 @@ open class ContactListAPI {
      - examples: [{contentType=application/json, example=""}]
      
      - parameter listId: (path) Your list id 
+     - parameter fields: (body) Fields model 
 
      - returns: RequestBuilder<String> 
      */
-    open class func listsRemoveDuplicatesByListIdPutWithRequestBuilder(listId: Int) -> RequestBuilder<String> {
+    open class func listsRemoveDuplicatesByListIdPutWithRequestBuilder(listId: Int, fields: Fields) -> RequestBuilder<String> {
         var path = "/lists/{list_id}/remove-duplicates"
         let listIdPreEscape = "\(listId)"
         let listIdPostEscape = listIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{list_id}", with: listIdPostEscape, options: .literal, range: nil)
         let URLString = SDKClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: fields)
+
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
 }

@@ -14,7 +14,7 @@ open class UploadAPI {
     /**
      Upload File
      
-     - parameter content: (body) Base64-encoded file contents 
+     - parameter content: (form) Your base64 encoded file. 
      - parameter convert: (query)  
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -34,7 +34,7 @@ open class UploadAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter content: (body) Base64-encoded file contents 
+     - parameter content: (form) Your base64 encoded file. 
      - parameter convert: (query)  
 
      - returns: RequestBuilder<String> 
@@ -42,8 +42,13 @@ open class UploadAPI {
     open class func uploadsPostWithRequestBuilder(content: String, convert: String) -> RequestBuilder<String> {
         let path = "/uploads"
         let URLString = SDKClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: content)
+        let formParams: [String:Any?] = [
+            "content": content
+        ]
 
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "convert": convert
@@ -51,7 +56,7 @@ open class UploadAPI {
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
 }

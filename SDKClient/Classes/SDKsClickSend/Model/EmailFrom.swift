@@ -12,14 +12,19 @@ import Foundation
 
 public struct EmailFrom: Codable {
 
-    /** Email of the recipient. */
-    public var email: String
+    /** Email address id of the recipient. */
+    public var emailAddressId: String
     /** Name of the recipient. */
     public var name: String?
 
-    public init(email: String, name: String?) {
-        self.email = email
+    public init(emailAddressId: String, name: String?) {
+        self.emailAddressId = emailAddressId
         self.name = name
+    }
+
+    public enum CodingKeys: String, CodingKey { 
+        case emailAddressId = "email_address_id"
+        case name
     }
 
 

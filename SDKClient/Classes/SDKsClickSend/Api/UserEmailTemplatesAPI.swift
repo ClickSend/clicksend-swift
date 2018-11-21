@@ -147,7 +147,7 @@ open class UserEmailTemplatesAPI {
 
     /**
      Update email template
-     - POST /email/templates/{template_id}
+     - PUT /email/templates/{template_id}
      - Update email template
      - BASIC:
        - type: basic
@@ -171,7 +171,7 @@ open class UserEmailTemplatesAPI {
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**

@@ -58,7 +58,7 @@ open class EmailMarketingAPI {
     /**
      Create allowed Email Address
      
-     - parameter emailAddress: (body) Email to be allowed. 
+     - parameter emailAddress: (form) Email to be allowed. 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func allowedEmailAddressPost(emailAddress: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
@@ -77,20 +77,25 @@ open class EmailMarketingAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter emailAddress: (body) Email to be allowed. 
+     - parameter emailAddress: (form) Email to be allowed. 
 
      - returns: RequestBuilder<String> 
      */
     open class func allowedEmailAddressPostWithRequestBuilder(emailAddress: String) -> RequestBuilder<String> {
         let path = "/email/addresses"
         let URLString = SDKClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailAddress)
+        let formParams: [String:Any?] = [
+            "email_address": emailAddress
+        ]
 
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
