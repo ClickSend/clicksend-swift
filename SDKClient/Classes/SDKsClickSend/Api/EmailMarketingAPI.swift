@@ -58,10 +58,10 @@ open class EmailMarketingAPI {
     /**
      Create allowed Email Address
      
-     - parameter emailAddress: (form) Email to be allowed. 
+     - parameter emailAddress: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func allowedEmailAddressPost(emailAddress: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func allowedEmailAddressPost(emailAddress: EmailAddress? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         allowedEmailAddressPostWithRequestBuilder(emailAddress: emailAddress).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -77,25 +77,20 @@ open class EmailMarketingAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter emailAddress: (form) Email to be allowed. 
+     - parameter emailAddress: (body)  (optional)
 
      - returns: RequestBuilder<String> 
      */
-    open class func allowedEmailAddressPostWithRequestBuilder(emailAddress: String) -> RequestBuilder<String> {
+    open class func allowedEmailAddressPostWithRequestBuilder(emailAddress: EmailAddress? = nil) -> RequestBuilder<String> {
         let path = "/email/addresses"
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "email_address": emailAddress
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailAddress)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**

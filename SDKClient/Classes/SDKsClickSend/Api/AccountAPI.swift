@@ -166,11 +166,11 @@ open class AccountAPI {
     /**
      Forgot password
      
-     - parameter username: (form) Username belonging to account. 
+     - parameter forgotPassword: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func forgotPasswordPut(username: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        forgotPasswordPutWithRequestBuilder(username: username).execute { (response, error) -> Void in
+    open class func forgotPasswordPut(forgotPassword: ForgotPassword? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        forgotPasswordPutWithRequestBuilder(forgotPassword: forgotPassword).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -185,25 +185,20 @@ open class AccountAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter username: (form) Username belonging to account. 
+     - parameter forgotPassword: (body)  (optional)
 
      - returns: RequestBuilder<String> 
      */
-    open class func forgotPasswordPutWithRequestBuilder(username: String) -> RequestBuilder<String> {
+    open class func forgotPasswordPutWithRequestBuilder(forgotPassword: ForgotPassword? = nil) -> RequestBuilder<String> {
         let path = "/forgot-password"
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "username": username
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: forgotPassword)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**
@@ -247,12 +242,11 @@ open class AccountAPI {
     /**
      Forgot username
      
-     - parameter email: (form) Email belonging to account. (optional)
-     - parameter phoneNumber: (form) Phone number belonging to account. (optional)
+     - parameter forgotUsername: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func forgotUsernamePut(email: String? = nil, phoneNumber: String? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        forgotUsernamePutWithRequestBuilder(email: email, phoneNumber: phoneNumber).execute { (response, error) -> Void in
+    open class func forgotUsernamePut(forgotUsername: ForgotUsername? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        forgotUsernamePutWithRequestBuilder(forgotUsername: forgotUsername).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -264,27 +258,20 @@ open class AccountAPI {
      - Forgot username
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter email: (form) Email belonging to account. (optional)
-     - parameter phoneNumber: (form) Phone number belonging to account. (optional)
+     - parameter forgotUsername: (body)  (optional)
 
      - returns: RequestBuilder<String> 
      */
-    open class func forgotUsernamePutWithRequestBuilder(email: String? = nil, phoneNumber: String? = nil) -> RequestBuilder<String> {
+    open class func forgotUsernamePutWithRequestBuilder(forgotUsername: ForgotUsername? = nil) -> RequestBuilder<String> {
         let path = "/forgot-username"
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "email": email,
-            "phone_number": phoneNumber
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: forgotUsername)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
 }

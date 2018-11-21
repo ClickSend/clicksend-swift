@@ -178,11 +178,11 @@ open class EmailToSmsAPI {
     /**
      Create email to sms stripped string rule
      
-     - parameter stripString: (form) String to be stripped. 
+     - parameter strippedString: (body) StrippedString model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsEmailSmsStrippedStringPost(stripString: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        smsEmailSmsStrippedStringPostWithRequestBuilder(stripString: stripString).execute { (response, error) -> Void in
+    open class func smsEmailSmsStrippedStringPost(strippedString: StrippedString, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        smsEmailSmsStrippedStringPostWithRequestBuilder(strippedString: strippedString).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -197,36 +197,31 @@ open class EmailToSmsAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter stripString: (form) String to be stripped. 
+     - parameter strippedString: (body) StrippedString model 
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsEmailSmsStrippedStringPostWithRequestBuilder(stripString: String) -> RequestBuilder<String> {
+    open class func smsEmailSmsStrippedStringPostWithRequestBuilder(strippedString: StrippedString) -> RequestBuilder<String> {
         let path = "/sms/email-sms-stripped-strings"
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "strip-string": stripString
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: strippedString)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**
      Update email to sms stripped string rule
      
-     - parameter stripString: (form) String to be stripped. 
+     - parameter url: (body) Url model 
      - parameter ruleId: (path) Your rule id 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsEmailSmsStrippedStringPut(stripString: String, ruleId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        smsEmailSmsStrippedStringPutWithRequestBuilder(stripString: stripString, ruleId: ruleId).execute { (response, error) -> Void in
+    open class func smsEmailSmsStrippedStringPut(url: Url, ruleId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        smsEmailSmsStrippedStringPutWithRequestBuilder(url: url, ruleId: ruleId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -241,29 +236,24 @@ open class EmailToSmsAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter stripString: (form) String to be stripped. 
+     - parameter url: (body) Url model 
      - parameter ruleId: (path) Your rule id 
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsEmailSmsStrippedStringPutWithRequestBuilder(stripString: String, ruleId: Int) -> RequestBuilder<String> {
+    open class func smsEmailSmsStrippedStringPutWithRequestBuilder(url: Url, ruleId: Int) -> RequestBuilder<String> {
         var path = "/sms/email-sms-stripped-strings/{rule_id}"
         let ruleIdPreEscape = "\(ruleId)"
         let ruleIdPostEscape = ruleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{rule_id}", with: ruleIdPostEscape, options: .literal, range: nil)
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "strip-string": stripString
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: url)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**

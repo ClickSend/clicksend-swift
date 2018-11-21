@@ -14,12 +14,12 @@ open class UploadAPI {
     /**
      Upload File
      
-     - parameter content: (form) Your base64 encoded file. 
      - parameter convert: (query)  
+     - parameter uploadFile: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func uploadsPost(content: String, convert: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        uploadsPostWithRequestBuilder(content: content, convert: convert).execute { (response, error) -> Void in
+    open class func uploadsPost(convert: String, uploadFile: UploadFile? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        uploadsPostWithRequestBuilder(convert: convert, uploadFile: uploadFile).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -34,21 +34,16 @@ open class UploadAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter content: (form) Your base64 encoded file. 
      - parameter convert: (query)  
+     - parameter uploadFile: (body)  (optional)
 
      - returns: RequestBuilder<String> 
      */
-    open class func uploadsPostWithRequestBuilder(content: String, convert: String) -> RequestBuilder<String> {
+    open class func uploadsPostWithRequestBuilder(convert: String, uploadFile: UploadFile? = nil) -> RequestBuilder<String> {
         let path = "/uploads"
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "content": content
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: uploadFile)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "convert": convert
@@ -56,7 +51,7 @@ open class UploadAPI {
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
 }

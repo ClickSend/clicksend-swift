@@ -225,10 +225,10 @@ open class SMSAPI {
     /**
      Create inbound sms
      
-     - parameter url: (form) Your url. 
+     - parameter url: (body) Url model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsInboundPost(url: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsInboundPost(url: Url, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsInboundPostWithRequestBuilder(url: url).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -244,25 +244,20 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter url: (form) Your url. 
+     - parameter url: (body) Url model 
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsInboundPostWithRequestBuilder(url: String) -> RequestBuilder<String> {
+    open class func smsInboundPostWithRequestBuilder(url: Url) -> RequestBuilder<String> {
         let path = "/sms/inbound"
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "url": url
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: url)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**
@@ -429,10 +424,10 @@ open class SMSAPI {
     /**
      Add a delivery receipt
      
-     - parameter url: (form) Your url. 
+     - parameter url: (body) Url model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsReceiptsPost(url: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsReceiptsPost(url: Url, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsReceiptsPostWithRequestBuilder(url: url).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -448,25 +443,20 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter url: (form) Your url. 
+     - parameter url: (body) Url model 
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsReceiptsPostWithRequestBuilder(url: String) -> RequestBuilder<String> {
+    open class func smsReceiptsPostWithRequestBuilder(url: Url) -> RequestBuilder<String> {
         let path = "/sms/receipts"
         let URLString = SDKClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-            "url": url
-        ]
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: url)
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**
