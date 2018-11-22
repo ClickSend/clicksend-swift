@@ -20,7 +20,7 @@ public struct StrippedString: Codable {
     }
 
     public enum CodingKeys: String, CodingKey { 
-        case stripString = "strip-string"
+        case stripString = "strip_string"
     }
 
 

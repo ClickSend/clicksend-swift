@@ -26,7 +26,7 @@ open class PostLetterAPI {
 
     /**
      export post letter history
-     - GET /post/letters/export
+     - GET /post/letters/history/export
      - export post letter history
      - BASIC:
        - type: basic
@@ -38,7 +38,7 @@ open class PostLetterAPI {
      - returns: RequestBuilder<String> 
      */
     open class func postLettersExportGetWithRequestBuilder(filename: String) -> RequestBuilder<String> {
-        let path = "/post/letters/export"
+        let path = "/post/letters/history/export"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         

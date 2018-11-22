@@ -18,8 +18,7 @@ public struct Email: Codable {
     public var cc: [EmailRecipient]?
     /** Array of Bcc Recipient items. */
     public var bcc: [EmailRecipient]?
-    /** From Email object. */
-    public var from: [EmailFrom]
+    public var from: EmailFrom
     /** Subject of the email. */
     public var subject: String?
     /** Body of the email. */
@@ -29,7 +28,7 @@ public struct Email: Codable {
     /** Schedule. */
     public var schedule: Double?
 
-    public init(to: [EmailRecipient], cc: [EmailRecipient]?, bcc: [EmailRecipient]?, from: [EmailFrom], subject: String?, body: String, attachments: [Attachment]?, schedule: Double?) {
+    public init(to: [EmailRecipient], cc: [EmailRecipient]?, bcc: [EmailRecipient]?, from: EmailFrom, subject: String?, body: String, attachments: [Attachment]?, schedule: Double?) {
         self.to = to
         self.cc = cc
         self.bcc = bcc

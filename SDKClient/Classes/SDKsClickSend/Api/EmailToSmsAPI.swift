@@ -216,12 +216,12 @@ open class EmailToSmsAPI {
     /**
      Update email to sms stripped string rule
      
-     - parameter url: (body) Url model 
+     - parameter strippedString: (body) StrippedString model 
      - parameter ruleId: (path) Your rule id 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsEmailSmsStrippedStringPut(url: Url, ruleId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        smsEmailSmsStrippedStringPutWithRequestBuilder(url: url, ruleId: ruleId).execute { (response, error) -> Void in
+    open class func smsEmailSmsStrippedStringPut(strippedString: StrippedString, ruleId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        smsEmailSmsStrippedStringPutWithRequestBuilder(strippedString: strippedString, ruleId: ruleId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -236,18 +236,18 @@ open class EmailToSmsAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter url: (body) Url model 
+     - parameter strippedString: (body) StrippedString model 
      - parameter ruleId: (path) Your rule id 
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsEmailSmsStrippedStringPutWithRequestBuilder(url: Url, ruleId: Int) -> RequestBuilder<String> {
+    open class func smsEmailSmsStrippedStringPutWithRequestBuilder(strippedString: StrippedString, ruleId: Int) -> RequestBuilder<String> {
         var path = "/sms/email-sms-stripped-strings/{rule_id}"
         let ruleIdPreEscape = "\(ruleId)"
         let ruleIdPostEscape = ruleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{rule_id}", with: ruleIdPostEscape, options: .literal, range: nil)
         let URLString = SDKClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: url)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: strippedString)
 
         let url = URLComponents(string: URLString)
 

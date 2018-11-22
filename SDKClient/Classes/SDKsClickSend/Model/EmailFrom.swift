@@ -8,7 +8,7 @@
 import Foundation
 
 
-/** Email being sent from */
+/** From Email object. */
 
 public struct EmailFrom: Codable {
 
