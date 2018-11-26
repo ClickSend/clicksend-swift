@@ -26,7 +26,7 @@ open class MmsCampaignAPI {
 
     /**
      Get specific mms campaign
-     - GET /mms-campaign/{mms_campaign_id}
+     - GET /mms-campaigns/{mms_campaign_id}
      - Get specific mms campaign
      - BASIC:
        - type: basic
@@ -38,7 +38,7 @@ open class MmsCampaignAPI {
      - returns: RequestBuilder<String> 
      */
     open class func mmsCampaignByMmsCampaignIdGetWithRequestBuilder(mmsCampaignId: Int) -> RequestBuilder<String> {
-        var path = "/mms-campaign/{mms_campaign_id}"
+        var path = "/mms-campaigns/{mms_campaign_id}"
         let mmsCampaignIdPreEscape = "\(mmsCampaignId)"
         let mmsCampaignIdPostEscape = mmsCampaignIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{mms_campaign_id}", with: mmsCampaignIdPostEscape, options: .literal, range: nil)

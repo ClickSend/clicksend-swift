@@ -26,7 +26,7 @@ open class SmsCampaignAPI {
 
     /**
      Get specific sms campaign
-     - GET /sms-campaign/{sms_campaign_id}
+     - GET /sms-campaigns/{sms_campaign_id}
      - Get specific sms campaign
      - BASIC:
        - type: basic
@@ -38,7 +38,7 @@ open class SmsCampaignAPI {
      - returns: RequestBuilder<String> 
      */
     open class func smsCampaignBySmsCampaignIdGetWithRequestBuilder(smsCampaignId: Int) -> RequestBuilder<String> {
-        var path = "/sms-campaign/{sms_campaign_id}"
+        var path = "/sms-campaigns/{sms_campaign_id}"
         let smsCampaignIdPreEscape = "\(smsCampaignId)"
         let smsCampaignIdPostEscape = smsCampaignIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{sms_campaign_id}", with: smsCampaignIdPostEscape, options: .literal, range: nil)
