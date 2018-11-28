@@ -8,10 +8,11 @@
 import Foundation
 
 
+/** Your file to be uploaded. */
 
 public struct UploadFile: Codable {
 
-    /** Your base64 encoded file. */
+    /** Your base64 encoded file string. */
     public var content: String
 
     public init(content: String) {

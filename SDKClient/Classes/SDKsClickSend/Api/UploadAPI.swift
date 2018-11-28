@@ -14,12 +14,12 @@ open class UploadAPI {
     /**
      Upload File
      
+     - parameter uploadFile: (body) Your file to be uploaded 
      - parameter convert: (query)  
-     - parameter uploadFile: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func uploadsPost(convert: String, uploadFile: UploadFile? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        uploadsPostWithRequestBuilder(convert: convert, uploadFile: uploadFile).execute { (response, error) -> Void in
+    open class func uploadsPost(uploadFile: UploadFile, convert: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        uploadsPostWithRequestBuilder(uploadFile: uploadFile, convert: convert).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -34,12 +34,12 @@ open class UploadAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
+     - parameter uploadFile: (body) Your file to be uploaded 
      - parameter convert: (query)  
-     - parameter uploadFile: (body)  (optional)
 
      - returns: RequestBuilder<String> 
      */
-    open class func uploadsPostWithRequestBuilder(convert: String, uploadFile: UploadFile? = nil) -> RequestBuilder<String> {
+    open class func uploadsPostWithRequestBuilder(uploadFile: UploadFile, convert: String) -> RequestBuilder<String> {
         let path = "/uploads"
         let URLString = SDKClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: uploadFile)
