@@ -17,7 +17,7 @@ public struct PostRecipient: Codable {
     /** First line of address */
     public var addressLine1: String
     /** Second line of address */
-    public var addressLine2: String
+    public var addressLine2: String?
     /** City */
     public var addressCity: String
     /** State */
@@ -31,7 +31,7 @@ public struct PostRecipient: Codable {
     /** When to send letter (0/null&#x3D;now) */
     public var schedule: Int?
 
-    public init(addressName: String, addressLine1: String, addressLine2: String, addressCity: String, addressState: String, addressPostalCode: String, addressCountry: String, returnAddressId: Int, schedule: Int?) {
+    public init(addressName: String, addressLine1: String, addressLine2: String?, addressCity: String, addressState: String, addressPostalCode: String, addressCountry: String, returnAddressId: Int, schedule: Int?) {
         self.addressName = addressName
         self.addressLine1 = addressLine1
         self.addressLine2 = addressLine2
