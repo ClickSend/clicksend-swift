@@ -205,12 +205,10 @@ open class ContactAPI {
      
      - parameter contact: (body) Contact model 
      - parameter listId: (path) List id 
-     - parameter page: (query) Page number (optional, default to 1)
-     - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func listsContactsByListIdPost(contact: Contact, listId: Int, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        listsContactsByListIdPostWithRequestBuilder(contact: contact, listId: listId, page: page, limit: limit).execute { (response, error) -> Void in
+    open class func listsContactsByListIdPost(contact: Contact, listId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        listsContactsByListIdPostWithRequestBuilder(contact: contact, listId: listId).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -227,12 +225,10 @@ open class ContactAPI {
      
      - parameter contact: (body) Contact model 
      - parameter listId: (path) List id 
-     - parameter page: (query) Page number (optional, default to 1)
-     - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func listsContactsByListIdPostWithRequestBuilder(contact: Contact, listId: Int, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func listsContactsByListIdPostWithRequestBuilder(contact: Contact, listId: Int) -> RequestBuilder<String> {
         var path = "/lists/{list_id}/contacts"
         let listIdPreEscape = "\(listId)"
         let listIdPostEscape = listIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -240,11 +236,7 @@ open class ContactAPI {
         let URLString = SDKClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: contact)
 
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "page": page?.encodeToJSON(), 
-            "limit": limit?.encodeToJSON()
-        ])
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 

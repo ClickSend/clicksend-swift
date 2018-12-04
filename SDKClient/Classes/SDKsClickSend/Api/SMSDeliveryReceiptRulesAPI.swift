@@ -177,12 +177,13 @@ open class SMSDeliveryReceiptRulesAPI {
     /**
      Get all sms delivery receipt automations
      
+     - parameter q: (query) Your keyword or query. 
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsDeliveryReceiptAutomationsGet(page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        smsDeliveryReceiptAutomationsGetWithRequestBuilder(page: page, limit: limit).execute { (response, error) -> Void in
+    open class func smsDeliveryReceiptAutomationsGet(q: String, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        smsDeliveryReceiptAutomationsGetWithRequestBuilder(q: q, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -197,18 +198,20 @@ open class SMSDeliveryReceiptRulesAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
+     - parameter q: (query) Your keyword or query. 
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsDeliveryReceiptAutomationsGetWithRequestBuilder(page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func smsDeliveryReceiptAutomationsGetWithRequestBuilder(q: String, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/automations/sms/receipts"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "q": q, 
             "page": page?.encodeToJSON(), 
             "limit": limit?.encodeToJSON()
         ])

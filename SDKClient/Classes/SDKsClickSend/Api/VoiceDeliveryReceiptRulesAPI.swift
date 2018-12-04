@@ -177,12 +177,13 @@ open class VoiceDeliveryReceiptRulesAPI {
     /**
      Get all voice delivery receipt automations
      
+     - parameter q: (query) Your keyword or query. 
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func voiceDeliveryReceiptAutomationsGet(page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        voiceDeliveryReceiptAutomationsGetWithRequestBuilder(page: page, limit: limit).execute { (response, error) -> Void in
+    open class func voiceDeliveryReceiptAutomationsGet(q: String, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        voiceDeliveryReceiptAutomationsGetWithRequestBuilder(q: q, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -197,18 +198,20 @@ open class VoiceDeliveryReceiptRulesAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
+     - parameter q: (query) Your keyword or query. 
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func voiceDeliveryReceiptAutomationsGetWithRequestBuilder(page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func voiceDeliveryReceiptAutomationsGetWithRequestBuilder(q: String, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/automations/voice/receipts"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "q": q, 
             "page": page?.encodeToJSON(), 
             "limit": limit?.encodeToJSON()
         ])

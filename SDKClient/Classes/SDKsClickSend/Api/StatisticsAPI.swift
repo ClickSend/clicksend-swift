@@ -12,41 +12,6 @@ import Alamofire
 
 open class StatisticsAPI {
     /**
-     Get mms statistics
-     
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func statisticsMmsGet(completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        statisticsMmsGetWithRequestBuilder().execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Get mms statistics
-     - GET /statistics/mms
-     - Get mms statistics
-     - BASIC:
-       - type: basic
-       - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
-
-     - returns: RequestBuilder<String> 
-     */
-    open class func statisticsMmsGetWithRequestBuilder() -> RequestBuilder<String> {
-        let path = "/statistics/mms"
-        let URLString = SDKClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      Get sms statistics
      
      - parameter completion: completion handler to receive the data and the error objects

@@ -149,10 +149,13 @@ open class FaxAPI {
     /**
      Get List of Fax Receipts
      
+     - parameter q: (query) Your keyword or query. 
+     - parameter page: (query) Page number (optional, default to 1)
+     - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func faxReceiptsGet(completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        faxReceiptsGetWithRequestBuilder().execute { (response, error) -> Void in
+    open class func faxReceiptsGet(q: String, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        faxReceiptsGetWithRequestBuilder(q: q, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -166,15 +169,24 @@ open class FaxAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
+     
+     - parameter q: (query) Your keyword or query. 
+     - parameter page: (query) Page number (optional, default to 1)
+     - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func faxReceiptsGetWithRequestBuilder() -> RequestBuilder<String> {
+    open class func faxReceiptsGetWithRequestBuilder(q: String, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/fax/receipts"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "q": q, 
+            "page": page?.encodeToJSON(), 
+            "limit": limit?.encodeToJSON()
+        ])
 
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
