@@ -177,12 +177,12 @@ open class EmailDeliveryReceiptRulesAPI {
     /**
      Get all email delivery receipt automations
      
-     - parameter q: (query) Your keyword or query. 
+     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func emailDeliveryReceiptAutomationsGet(q: String, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func emailDeliveryReceiptAutomationsGet(q: String? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         emailDeliveryReceiptAutomationsGetWithRequestBuilder(q: q, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -198,13 +198,13 @@ open class EmailDeliveryReceiptRulesAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter q: (query) Your keyword or query. 
+     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func emailDeliveryReceiptAutomationsGetWithRequestBuilder(q: String, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func emailDeliveryReceiptAutomationsGetWithRequestBuilder(q: String? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/automations/email/receipts"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil

@@ -181,12 +181,12 @@ open class SMSAPI {
     /**
      Get all inbound sms
      
-     - parameter q: (query) Your keyword or query. 
+     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsInboundGet(q: String, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsInboundGet(q: String? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsInboundGetWithRequestBuilder(q: q, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -202,13 +202,13 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter q: (query) Your keyword or query. 
+     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsInboundGetWithRequestBuilder(q: String, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func smsInboundGetWithRequestBuilder(q: String? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/sms/inbound"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -383,12 +383,12 @@ open class SMSAPI {
     /**
      Get all delivery receipts
      
-     - parameter q: (query) Your keyword or query. 
+     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsReceiptsGet(q: String, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsReceiptsGet(q: String? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsReceiptsGetWithRequestBuilder(q: q, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -404,13 +404,13 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter q: (query) Your keyword or query. 
+     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsReceiptsGetWithRequestBuilder(q: String, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func smsReceiptsGetWithRequestBuilder(q: String? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/sms/receipts"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
