@@ -13,9 +13,9 @@ import Foundation
 public struct DateBefore: Codable {
 
     /** An optional timestamp - mark all as read before this timestamp. If not given, all messages will be marked as read. */
-    public var dateBefore: String?
+    public var dateBefore: Double?
 
-    public init(dateBefore: String?) {
+    public init(dateBefore: Double?) {
         self.dateBefore = dateBefore
     }
 
