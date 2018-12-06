@@ -131,14 +131,15 @@ open class SMSAPI {
     /**
      Get all sms history
      
+     - parameter q: (query) Custom query Example: from:{number},status_code:201. (optional)
      - parameter dateFrom: (query) Start date (optional)
      - parameter dateTo: (query) End date (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsHistoryGet(dateFrom: Int? = nil, dateTo: Int? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        smsHistoryGetWithRequestBuilder(dateFrom: dateFrom, dateTo: dateTo, page: page, limit: limit).execute { (response, error) -> Void in
+    open class func smsHistoryGet(q: String? = nil, dateFrom: Int? = nil, dateTo: Int? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        smsHistoryGetWithRequestBuilder(q: q, dateFrom: dateFrom, dateTo: dateTo, page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -153,6 +154,7 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
+     - parameter q: (query) Custom query Example: from:{number},status_code:201. (optional)
      - parameter dateFrom: (query) Start date (optional)
      - parameter dateTo: (query) End date (optional)
      - parameter page: (query) Page number (optional, default to 1)
@@ -160,13 +162,14 @@ open class SMSAPI {
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsHistoryGetWithRequestBuilder(dateFrom: Int? = nil, dateTo: Int? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func smsHistoryGetWithRequestBuilder(q: String? = nil, dateFrom: Int? = nil, dateTo: Int? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/sms/history"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "q": q, 
             "date_from": dateFrom?.encodeToJSON(), 
             "date_to": dateTo?.encodeToJSON(), 
             "page": page?.encodeToJSON(), 
