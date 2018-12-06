@@ -307,10 +307,10 @@ open class SMSAPI {
     /**
      Mark inbound SMS as read
      
-     - parameter dateBefore: (body) An optional timestamp - mark all as read before this timestamp. If not given, all messages will be marked as read. (optional)
+     - parameter dateBefore: (body) DateBefore model (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsInboundReadPut(dateBefore: Double? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsInboundReadPut(dateBefore: DateBefore? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsInboundReadPutWithRequestBuilder(dateBefore: dateBefore).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -326,11 +326,11 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter dateBefore: (body) An optional timestamp - mark all as read before this timestamp. If not given, all messages will be marked as read. (optional)
+     - parameter dateBefore: (body) DateBefore model (optional)
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsInboundReadPutWithRequestBuilder(dateBefore: Double? = nil) -> RequestBuilder<String> {
+    open class func smsInboundReadPutWithRequestBuilder(dateBefore: DateBefore? = nil) -> RequestBuilder<String> {
         let path = "/sms/inbound-read"
         let URLString = SDKClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dateBefore)
@@ -506,10 +506,10 @@ open class SMSAPI {
     /**
      Mark delivery receipts as read
      
-     - parameter dateBefore: (body) Mark all as read before this timestamp (optional)
+     - parameter dateBefore: (body) DateBefore model (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsReceiptsReadPut(dateBefore: Double? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsReceiptsReadPut(dateBefore: DateBefore? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsReceiptsReadPutWithRequestBuilder(dateBefore: dateBefore).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -525,11 +525,11 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter dateBefore: (body) Mark all as read before this timestamp (optional)
+     - parameter dateBefore: (body) DateBefore model (optional)
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsReceiptsReadPutWithRequestBuilder(dateBefore: Double? = nil) -> RequestBuilder<String> {
+    open class func smsReceiptsReadPutWithRequestBuilder(dateBefore: DateBefore? = nil) -> RequestBuilder<String> {
         let path = "/sms/receipts-read"
         let URLString = SDKClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dateBefore)
