@@ -266,10 +266,51 @@ open class SMSAPI {
     /**
      Mark inbound SMS as read
      
+     - parameter messageId: (path) Message ID 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func smsInboundReadByMessageIdPut(messageId: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        smsInboundReadByMessageIdPutWithRequestBuilder(messageId: messageId).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Mark inbound SMS as read
+     - PUT /sms/inbound-read/{message_id}
+     - Mark specific inbound SMS as read
+     - BASIC:
+       - type: basic
+       - name: BasicAuth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter messageId: (path) Message ID 
+
+     - returns: RequestBuilder<String> 
+     */
+    open class func smsInboundReadByMessageIdPutWithRequestBuilder(messageId: String) -> RequestBuilder<String> {
+        var path = "/sms/inbound-read/{message_id}"
+        let messageIdPreEscape = "\(messageId)"
+        let messageIdPostEscape = messageIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{message_id}", with: messageIdPostEscape, options: .literal, range: nil)
+        let URLString = SDKClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Mark inbound SMS as read
+     
      - parameter dateBefore: (body) An optional timestamp - mark all as read before this timestamp. If not given, all messages will be marked as read. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsInboundReadPut(dateBefore: String? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsInboundReadPut(dateBefore: Double? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsInboundReadPutWithRequestBuilder(dateBefore: dateBefore).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -289,7 +330,7 @@ open class SMSAPI {
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsInboundReadPutWithRequestBuilder(dateBefore: String? = nil) -> RequestBuilder<String> {
+    open class func smsInboundReadPutWithRequestBuilder(dateBefore: Double? = nil) -> RequestBuilder<String> {
         let path = "/sms/inbound-read"
         let URLString = SDKClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dateBefore)
@@ -383,13 +424,12 @@ open class SMSAPI {
     /**
      Get all delivery receipts
      
-     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsReceiptsGet(q: String? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        smsReceiptsGetWithRequestBuilder(q: q, page: page, limit: limit).execute { (response, error) -> Void in
+    open class func smsReceiptsGet(page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        smsReceiptsGetWithRequestBuilder(page: page, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -404,20 +444,18 @@ open class SMSAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsReceiptsGetWithRequestBuilder(q: String? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func smsReceiptsGetWithRequestBuilder(page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
         let path = "/sms/receipts"
         let URLString = SDKClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "q": q, 
             "page": page?.encodeToJSON(), 
             "limit": limit?.encodeToJSON()
         ])
@@ -471,7 +509,7 @@ open class SMSAPI {
      - parameter dateBefore: (body) Mark all as read before this timestamp (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func smsReceiptsReadPut(dateBefore: String? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func smsReceiptsReadPut(dateBefore: Double? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         smsReceiptsReadPutWithRequestBuilder(dateBefore: dateBefore).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -491,7 +529,7 @@ open class SMSAPI {
 
      - returns: RequestBuilder<String> 
      */
-    open class func smsReceiptsReadPutWithRequestBuilder(dateBefore: String? = nil) -> RequestBuilder<String> {
+    open class func smsReceiptsReadPutWithRequestBuilder(dateBefore: Double? = nil) -> RequestBuilder<String> {
         let path = "/sms/receipts-read"
         let URLString = SDKClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dateBefore)
