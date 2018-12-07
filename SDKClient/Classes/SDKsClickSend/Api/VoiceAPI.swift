@@ -252,7 +252,7 @@ open class VoiceAPI {
     }
 
     /**
-     Get all voice receipts
+     Get all delivery receipts
      
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
@@ -266,9 +266,9 @@ open class VoiceAPI {
 
 
     /**
-     Get all voice receipts
+     Get all delivery receipts
      - GET /voice/receipts
-     - Get all voice receipts
+     - Get all delivery receipts
      - BASIC:
        - type: basic
        - name: BasicAuth
@@ -293,6 +293,82 @@ open class VoiceAPI {
         let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Add a delivery receipt
+     
+     - parameter url: (body) Url model 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func voiceReceiptsPost(url: Url, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        voiceReceiptsPostWithRequestBuilder(url: url).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Add a delivery receipt
+     - POST /voice/receipts
+     - Add a delivery receipt
+     - BASIC:
+       - type: basic
+       - name: BasicAuth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter url: (body) Url model 
+
+     - returns: RequestBuilder<String> 
+     */
+    open class func voiceReceiptsPostWithRequestBuilder(url: Url) -> RequestBuilder<String> {
+        let path = "/voice/receipts"
+        let URLString = SDKClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: url)
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+
+    /**
+     Mark delivery receipts as read
+     
+     - parameter dateBefore: (body) DateBefore model (optional)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func voiceReceiptsReadPut(dateBefore: DateBefore? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        voiceReceiptsReadPutWithRequestBuilder(dateBefore: dateBefore).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Mark delivery receipts as read
+     - PUT /voice/receipts-read
+     - Mark delivery receipts as read
+     - BASIC:
+       - type: basic
+       - name: BasicAuth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter dateBefore: (body) DateBefore model (optional)
+
+     - returns: RequestBuilder<String> 
+     */
+    open class func voiceReceiptsReadPutWithRequestBuilder(dateBefore: DateBefore? = nil) -> RequestBuilder<String> {
+        let path = "/voice/receipts-read"
+        let URLString = SDKClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dateBefore)
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**

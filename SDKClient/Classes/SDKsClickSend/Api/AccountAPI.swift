@@ -85,6 +85,52 @@ open class AccountAPI {
     }
 
     /**
+     Get account useage by subaccount
+     
+     - parameter year: (path) Year to filter by (yyyy) 
+     - parameter month: (path) Month to filter by (mm) 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func accountUseageBySubaccountGet(year: Int, month: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        accountUseageBySubaccountGetWithRequestBuilder(year: year, month: month).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get account useage by subaccount
+     - GET /account/usage/{year}/{month}/subaccount
+     - Get account useage by subaccount
+     - BASIC:
+       - type: basic
+       - name: BasicAuth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter year: (path) Year to filter by (yyyy) 
+     - parameter month: (path) Month to filter by (mm) 
+
+     - returns: RequestBuilder<String> 
+     */
+    open class func accountUseageBySubaccountGetWithRequestBuilder(year: Int, month: Int) -> RequestBuilder<String> {
+        var path = "/account/usage/{year}/{month}/subaccount"
+        let yearPreEscape = "\(year)"
+        let yearPostEscape = yearPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{year}", with: yearPostEscape, options: .literal, range: nil)
+        let monthPreEscape = "\(month)"
+        let monthPostEscape = monthPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{month}", with: monthPostEscape, options: .literal, range: nil)
+        let URLString = SDKClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Send account activation token
      
      - parameter accountVerify: (body) Account details 

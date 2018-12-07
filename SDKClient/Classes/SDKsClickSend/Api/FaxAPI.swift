@@ -147,50 +147,6 @@ open class FaxAPI {
     }
 
     /**
-     Get List of Fax Receipts
-     
-     - parameter page: (query) Page number (optional, default to 1)
-     - parameter limit: (query) Number of records per page (optional, default to 10)
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func faxReceiptsGet(page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        faxReceiptsGetWithRequestBuilder(page: page, limit: limit).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Get List of Fax Receipts
-     - GET /fax/receipts
-     - Get List of Fax Receipts
-     - BASIC:
-       - type: basic
-       - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
-     
-     - parameter page: (query) Page number (optional, default to 1)
-     - parameter limit: (query) Number of records per page (optional, default to 10)
-
-     - returns: RequestBuilder<String> 
-     */
-    open class func faxReceiptsGetWithRequestBuilder(page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
-        let path = "/fax/receipts"
-        let URLString = SDKClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "page": page?.encodeToJSON(), 
-            "limit": limit?.encodeToJSON()
-        ])
-
-        let requestBuilder: RequestBuilder<String>.Type = SDKClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      Send a fax using supplied supported file-types.
      
      - parameter faxMessage: (body) FaxMessageCollection model 
