@@ -99,7 +99,7 @@ open class InboundFAXRulesAPI {
      - parameter inboundFaxRule: (body) Inbound fax rule model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func faxInboundAutomationPost(inboundFaxRule: InboundFAXRule, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func faxInboundAutomationPost(inboundFaxRule: InboundFaxRule, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         faxInboundAutomationPostWithRequestBuilder(inboundFaxRule: inboundFaxRule).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -119,7 +119,7 @@ open class InboundFAXRulesAPI {
 
      - returns: RequestBuilder<String> 
      */
-    open class func faxInboundAutomationPostWithRequestBuilder(inboundFaxRule: InboundFAXRule) -> RequestBuilder<String> {
+    open class func faxInboundAutomationPostWithRequestBuilder(inboundFaxRule: InboundFaxRule) -> RequestBuilder<String> {
         let path = "/automations/fax/inbound"
         let URLString = SDKClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: inboundFaxRule)
@@ -138,7 +138,7 @@ open class InboundFAXRulesAPI {
      - parameter inboundFaxRule: (body) Inbound fax rule model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func faxInboundAutomationPut(inboundRuleId: Int, inboundFaxRule: InboundFAXRule, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+    open class func faxInboundAutomationPut(inboundRuleId: Int, inboundFaxRule: InboundFaxRule, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         faxInboundAutomationPutWithRequestBuilder(inboundRuleId: inboundRuleId, inboundFaxRule: inboundFaxRule).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -159,7 +159,7 @@ open class InboundFAXRulesAPI {
 
      - returns: RequestBuilder<String> 
      */
-    open class func faxInboundAutomationPutWithRequestBuilder(inboundRuleId: Int, inboundFaxRule: InboundFAXRule) -> RequestBuilder<String> {
+    open class func faxInboundAutomationPutWithRequestBuilder(inboundRuleId: Int, inboundFaxRule: InboundFaxRule) -> RequestBuilder<String> {
         var path = "/automations/fax/inbound/{inbound_rule_id}"
         let inboundRuleIdPreEscape = "\(inboundRuleId)"
         let inboundRuleIdPostEscape = inboundRuleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
