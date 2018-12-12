@@ -97,11 +97,11 @@ open class ContactListAPI {
      Update specific contact list
      
      - parameter listId: (path) Your list id 
-     - parameter list: (body) List model 
+     - parameter contactList: (body) Contact list model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func listsByListIdPut(listId: Int, list: Array, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        listsByListIdPutWithRequestBuilder(listId: listId, list: list).execute { (response, error) -> Void in
+    open class func listsByListIdPut(listId: Int, contactList: ContactList, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        listsByListIdPutWithRequestBuilder(listId: listId, contactList: contactList).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -117,17 +117,17 @@ open class ContactListAPI {
      - examples: [{contentType=application/json, example=""}]
      
      - parameter listId: (path) Your list id 
-     - parameter list: (body) List model 
+     - parameter contactList: (body) Contact list model 
 
      - returns: RequestBuilder<String> 
      */
-    open class func listsByListIdPutWithRequestBuilder(listId: Int, list: Array) -> RequestBuilder<String> {
+    open class func listsByListIdPutWithRequestBuilder(listId: Int, contactList: ContactList) -> RequestBuilder<String> {
         var path = "/lists/{list_id}"
         let listIdPreEscape = "\(listId)"
         let listIdPostEscape = listIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{list_id}", with: listIdPostEscape, options: .literal, range: nil)
         let URLString = SDKClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: list)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: contactList)
 
         let url = URLComponents(string: URLString)
 
@@ -226,11 +226,11 @@ open class ContactListAPI {
     /**
      Create new contact list
      
-     - parameter list: (body) List model 
+     - parameter contactList: (body) Contact list model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func listsPost(list: Array, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        listsPostWithRequestBuilder(list: list).execute { (response, error) -> Void in
+    open class func listsPost(contactList: ContactList, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        listsPostWithRequestBuilder(contactList: contactList).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -245,14 +245,14 @@ open class ContactListAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter list: (body) List model 
+     - parameter contactList: (body) Contact list model 
 
      - returns: RequestBuilder<String> 
      */
-    open class func listsPostWithRequestBuilder(list: Array) -> RequestBuilder<String> {
+    open class func listsPostWithRequestBuilder(contactList: ContactList) -> RequestBuilder<String> {
         let path = "/lists"
         let URLString = SDKClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: list)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: contactList)
 
         let url = URLComponents(string: URLString)
 
