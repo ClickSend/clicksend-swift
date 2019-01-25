@@ -28,17 +28,19 @@ if let authHeader = Request.authorizationHeader(user: "USERNAME", password: "PAS
     SDKClientAPI.customHeaders = [authHeader.key : authHeader.value]
 }
 
-let message = SmsMessage(from: "sendmobile", 
-                        body: "Chocolate bar icing icing oat cake carrot cake jelly cotton MWEvciEPIr.", 
-                        to: "+0451111111", 
-                        source: "swift", 
-                        schedule: nil, 
-                        customString: nil,
-                        listId: nil, 
-                        country: nil, 
-                        fromEmail: nil)
+let message1 = SmsMessage(
+        body: "Chocolate bar icing icing oat cake carrot cake jelly cotton MWEvciEPIr.", 
+        to: "+0451111111", 
+        source: "swift"
+)
 
-let smsCollection = SmsMessageCollection(messages: [message])
+let message2 = SmsMessage(
+        body: "Chocolate bar icing icing oat cake carrot cake jelly cotton MWEvciEPIr.", 
+        source: "swift", 
+        listId: 1234
+)
+
+let smsCollection = SmsMessageCollection(messages: [message1, message2])
 SMSAPI.smsSendPost(smsMessages: smsCollection) { (dataString, error) in
 
     guard let dataString = dataString else {
