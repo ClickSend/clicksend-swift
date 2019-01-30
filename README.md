@@ -25,7 +25,7 @@ Please follow the [installation](#installation) procedure and then run the follo
 import Alamofire
 
 if let authHeader = Request.authorizationHeader(user: "USERNAME", password: "PASSWORD") {
-    SDKClientAPI.customHeaders = [authHeader.key : authHeader.value]
+    ClickSendClientAPI.customHeaders = [authHeader.key : authHeader.value]
 }
 
 let message1 = SmsMessage(
