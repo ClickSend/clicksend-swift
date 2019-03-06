@@ -22,13 +22,16 @@ public struct SmsCampaign: Codable {
     public var from: String?
     /** Your schedule timestamp. */
     public var schedule: Int?
+    /** url to be shortened add http://smsg.io/xxxxx&#x60; to the body as a placeholder. */
+    public var urlToShorten: String?
 
-    public init(listId: Int, name: String, body: String, from: String?, schedule: Int?) {
+    public init(listId: Int, name: String, body: String, from: String?, schedule: Int?, urlToShorten: String?) {
         self.listId = listId
         self.name = name
         self.body = body
         self.from = from
         self.schedule = schedule
+        self.urlToShorten = urlToShorten
     }
 
     public enum CodingKeys: String, CodingKey { 
@@ -37,6 +40,7 @@ public struct SmsCampaign: Codable {
         case body
         case from
         case schedule
+        case urlToShorten = "url_to_shorten"
     }
 
 
