@@ -13,7 +13,7 @@ import Foundation
 public struct MmsMessage: Codable {
 
     /** Recipient phone number in E.164 format */
-    public var to: String
+    public var to: String?
     /** Your message */
     public var body: String
     /** Subject line (max 20 characters) */
@@ -33,7 +33,7 @@ public struct MmsMessage: Codable {
     /** Email to send replies to */
     public var fromEmail: String?
 
-    public init(to: String, body: String, subject: String, from: String?, country: String?, source: String?, listId: Int?, schedule: Int?, customString: String?, fromEmail: String?) {
+    public init(to: String?, body: String, subject: String, from: String?, country: String?, source: String?, listId: Int?, schedule: Int?, customString: String?, fromEmail: String?) {
         self.to = to
         self.body = body
         self.subject = subject

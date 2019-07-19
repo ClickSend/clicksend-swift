@@ -13,7 +13,7 @@ import Foundation
 public struct VoiceMessage: Codable {
 
     /** Your phone number in E.164 format. */
-    public var to: String
+    public var to: String?
     /** Biscuit uv3nlCOjRk croissant chocolate lollipop chocolate muffin. */
     public var body: String
     /** Either &#39;female&#39; or &#39;male&#39;. */
@@ -35,7 +35,7 @@ public struct VoiceMessage: Codable {
     /** Whether to attempt to detect an answering machine or voicemail service and leave a message */
     public var machineDetection: Int?
 
-    public init(to: String, body: String, voice: String, customString: String, country: String, source: String?, listId: Int?, lang: String?, schedule: Int?, requireInput: Int?, machineDetection: Int?) {
+    public init(to: String?, body: String, voice: String, customString: String, country: String, source: String?, listId: Int?, lang: String?, schedule: Int?, requireInput: Int?, machineDetection: Int?) {
         self.to = to
         self.body = body
         self.voice = voice

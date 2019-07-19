@@ -17,7 +17,7 @@ public struct SmsMessage: Codable {
     /** Your message. */
     public var body: String
     /** Recipient phone number in E.164 format. */
-    public var to: String
+    public var to: String?
     /** Your method of sending e.g. &#39;wordpress&#39;, &#39;php&#39;, &#39;c#&#39;. */
     public var source: String?
     /** Leave blank for immediate delivery. Your schedule time in unix format http://help.clicksend.com/what-is-a-unix-timestamp */
@@ -31,7 +31,7 @@ public struct SmsMessage: Codable {
     /** An email address where the reply should be emailed to. If omitted, the reply will be emailed back to the user who sent the outgoing SMS. */
     public var fromEmail: String?
 
-    public init(from: String?, body: String, to: String, source: String?, schedule: Int?, customString: String?, listId: Int?, country: String?, fromEmail: String?) {
+    public init(from: String?, body: String, to: String?, source: String?, schedule: Int?, customString: String?, listId: Int?, country: String?, fromEmail: String?) {
         self.from = from
         self.body = body
         self.to = to
