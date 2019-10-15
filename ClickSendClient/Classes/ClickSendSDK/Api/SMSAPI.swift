@@ -384,47 +384,6 @@ open class SMSAPI {
     }
 
     /**
-     Mark specific delivery receipt as read
-     
-     - parameter messageId: (path) The message ID you want to mark as read 
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func smsReceiptReadByMessageIdPut(messageId: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        smsReceiptReadByMessageIdPutWithRequestBuilder(messageId: messageId).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Mark specific delivery receipt as read
-     - PUT /sms/receipts-read/{message_id}
-     - Mark specific delivery receipt as read
-     - BASIC:
-       - type: basic
-       - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
-     
-     - parameter messageId: (path) The message ID you want to mark as read 
-
-     - returns: RequestBuilder<String> 
-     */
-    open class func smsReceiptReadByMessageIdPutWithRequestBuilder(messageId: String) -> RequestBuilder<String> {
-        var path = "/sms/receipts-read/{message_id}"
-        let messageIdPreEscape = "\(messageId)"
-        let messageIdPostEscape = messageIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{message_id}", with: messageIdPostEscape, options: .literal, range: nil)
-        let URLString = ClickSendClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<String>.Type = ClickSendClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      Get a Specific Delivery Receipt
      
      - parameter messageId: (path) Message ID 
