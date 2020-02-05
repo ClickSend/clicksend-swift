@@ -15,7 +15,7 @@ enum DateError: String, Error {
 
 open class CodableHelper {
 
-    open static var dateformatter: DateFormatter?
+    public static var dateformatter: DateFormatter?
 
     open class func decode<T>(_ type: T.Type, from data: Data) -> (decodableObj: T?, error: Error?) where T : Decodable {
         var returnedDecodable: T? = nil
@@ -90,5 +90,4 @@ open class CodableHelper {
 
         return (returnedData, returnedError)
     }
-
 }
