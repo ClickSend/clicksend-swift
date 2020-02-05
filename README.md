@@ -9,10 +9,30 @@ This is the official [ClickSend](https://clicksend.com) SDK. Documentation can b
 
 ## Installation
 
-Put the package under your project folder and add the following in import:
-```
-    "./clicksend-swift"
-```
+### Manual
+You can integrate ClicksendSwift into your project manually.
+
+ 1. Open up Terminal, cd into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
+Open Terminal
+`git init`
+2. Add ClickSend-swift as a git submodule by running the following command:
+ git submodule add https://github.com/ClickSend/clicksend-swift.git
+3. Next, go inside the submodule directory "clicksend-swift" and Drag "ClickSendClient" folder inside your project
+4. Lastly, Install Alamofire using Cocoapods
+    1. CocoapodsCocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamofire into your Xcode project using CocoaPods, specify it in your Podfile:
+        1. Open up Terminal, cd into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
+        2. Open Terminal
+        3. `pod init`
+        4. Podfile will be generated and inside that Podfile add 
+        5. pod 'Alamofire', '~> 4.9.1' and save
+        6. Go back to Terminal and run `pod install`
+    2. After installing Alamofire sing cocoapods, make sure to Open the Project using "project_name.xcworkspace"
+5. Congrats, You are good to go!
+
+### Cocoapods
+
+CocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamofire into your Xcode project using CocoaPods, specify it in your Podfile:
+pod 'ClickSendSwift'
 
 ## Documentation
 
