@@ -244,6 +244,57 @@ open class ContactAPI {
     }
 
     /**
+     Copy contact to another list
+     
+     - parameter fromListId: (path) List ID for list that contains contact. 
+     - parameter contactId: (path) Contact ID 
+     - parameter toListId: (path) List ID for list you want to copy the contact to. 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func listsCopyContactPut(fromListId: Int, contactId: Int, toListId: Int, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        listsCopyContactPutWithRequestBuilder(fromListId: fromListId, contactId: contactId, toListId: toListId).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Copy contact to another list
+     - PUT /lists/{from_list_id}/contacts/{contact_id}/copy/{to_list_id}
+     - Copy contact to another list
+     - BASIC:
+       - type: basic
+       - name: BasicAuth
+     - examples: [{contentType=application/json, example=""}]
+     
+     - parameter fromListId: (path) List ID for list that contains contact. 
+     - parameter contactId: (path) Contact ID 
+     - parameter toListId: (path) List ID for list you want to copy the contact to. 
+
+     - returns: RequestBuilder<String> 
+     */
+    open class func listsCopyContactPutWithRequestBuilder(fromListId: Int, contactId: Int, toListId: Int) -> RequestBuilder<String> {
+        var path = "/lists/{from_list_id}/contacts/{contact_id}/copy/{to_list_id}"
+        let fromListIdPreEscape = "\(fromListId)"
+        let fromListIdPostEscape = fromListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{from_list_id}", with: fromListIdPostEscape, options: .literal, range: nil)
+        let contactIdPreEscape = "\(contactId)"
+        let contactIdPostEscape = contactIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{contact_id}", with: contactIdPostEscape, options: .literal, range: nil)
+        let toListIdPreEscape = "\(toListId)"
+        let toListIdPostEscape = toListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{to_list_id}", with: toListIdPostEscape, options: .literal, range: nil)
+        let URLString = ClickSendClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<String>.Type = ClickSendClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Remove all opted out contacts
      
      - parameter listId: (path) Your list id 
