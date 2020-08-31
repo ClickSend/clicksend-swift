@@ -14,11 +14,11 @@ open class DetectAddressAPI {
     /**
      Detects address in uploaded file.
      
-     - parameter uploadFile: (body) Your file to be uploaded 
+     - parameter content: (body) Your file to be uploaded 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func detectAddressPost(uploadFile: UploadFile, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        detectAddressPostWithRequestBuilder(uploadFile: uploadFile).execute { (response, error) -> Void in
+    open class func detectAddressPost(content: Content, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        detectAddressPostWithRequestBuilder(content: content).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -33,14 +33,14 @@ open class DetectAddressAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter uploadFile: (body) Your file to be uploaded 
+     - parameter content: (body) Your file to be uploaded 
 
      - returns: RequestBuilder<String> 
      */
-    open class func detectAddressPostWithRequestBuilder(uploadFile: UploadFile) -> RequestBuilder<String> {
+    open class func detectAddressPostWithRequestBuilder(content: Content) -> RequestBuilder<String> {
         let path = "/post/letters/detect-address"
         let URLString = ClickSendClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: uploadFile)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: content)
 
         let url = URLComponents(string: URLString)
 

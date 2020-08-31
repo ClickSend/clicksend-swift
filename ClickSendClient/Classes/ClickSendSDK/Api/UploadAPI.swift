@@ -14,12 +14,12 @@ open class UploadAPI {
     /**
      Upload File
      
-     - parameter uploadFile: (body) Your file to be uploaded 
+     - parameter content: (body) Your file to be uploaded 
      - parameter convert: (query)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func uploadsPost(uploadFile: UploadFile, convert: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        uploadsPostWithRequestBuilder(uploadFile: uploadFile, convert: convert).execute { (response, error) -> Void in
+    open class func uploadsPost(content: Content, convert: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        uploadsPostWithRequestBuilder(content: content, convert: convert).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -34,15 +34,15 @@ open class UploadAPI {
        - name: BasicAuth
      - examples: [{contentType=application/json, example=""}]
      
-     - parameter uploadFile: (body) Your file to be uploaded 
+     - parameter content: (body) Your file to be uploaded 
      - parameter convert: (query)  
 
      - returns: RequestBuilder<String> 
      */
-    open class func uploadsPostWithRequestBuilder(uploadFile: UploadFile, convert: String) -> RequestBuilder<String> {
+    open class func uploadsPostWithRequestBuilder(content: Content, convert: String) -> RequestBuilder<String> {
         let path = "/uploads"
         let URLString = ClickSendClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: uploadFile)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: content)
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([

@@ -8,7 +8,7 @@
 import Foundation
 
 
-/** All dates before specified timestam. */
+/** All dates before specified timestamp. */
 
 public struct DateBefore: Codable {
 
