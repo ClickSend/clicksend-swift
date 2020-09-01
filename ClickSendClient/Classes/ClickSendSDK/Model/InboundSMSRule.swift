@@ -26,8 +26,10 @@ public struct InboundSMSRule: Codable {
     public var actionAddress: String
     /** Enabled: Disabled&#x3D;0 or Enabled&#x3D;1. */
     public var enabled: Double
+    /** post, get, or json. post by default */
+    public var webhookType: String?
 
-    public init(dedicatedNumber: String, ruleName: String, messageSearchType: Double, messageSearchTerm: String, action: String, actionAddress: String, enabled: Double) {
+    public init(dedicatedNumber: String, ruleName: String, messageSearchType: Double, messageSearchTerm: String, action: String, actionAddress: String, enabled: Double, webhookType: String?) {
         self.dedicatedNumber = dedicatedNumber
         self.ruleName = ruleName
         self.messageSearchType = messageSearchType
@@ -35,6 +37,7 @@ public struct InboundSMSRule: Codable {
         self.action = action
         self.actionAddress = actionAddress
         self.enabled = enabled
+        self.webhookType = webhookType
     }
 
     public enum CodingKeys: String, CodingKey { 
@@ -45,6 +48,7 @@ public struct InboundSMSRule: Codable {
         case action
         case actionAddress = "action_address"
         case enabled
+        case webhookType = "webhook_type"
     }
 
 
