@@ -30,7 +30,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
 
      - returns: RequestBuilder<String> 
      */
@@ -66,7 +69,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter messageId: (path) The message ID you want to cancel 
 
@@ -107,7 +113,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter filename: (query) Filename to download history as 
 
@@ -152,7 +161,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter q: (query) Custom query Example: from:{number},status_code:201. (optional)
      - parameter dateFrom: (query) Start date (optional)
@@ -203,7 +215,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)
@@ -248,7 +263,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter url: (body) Url model 
 
@@ -286,7 +304,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter messageId: (path) Message ID 
 
@@ -327,7 +348,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter dateBefore: (body) DateBefore model (optional)
 
@@ -365,7 +389,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter smsMessages: (body) SmsMessageCollection model 
 
@@ -403,7 +430,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter messageId: (path) Message ID 
 
@@ -445,7 +475,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
@@ -488,7 +521,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter url: (body) Url model 
 
@@ -526,7 +562,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter dateBefore: (body) DateBefore model (optional)
 
@@ -564,7 +603,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter smsMessages: (body) SmsMessageCollection model 
 
@@ -602,7 +644,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter templateId: (path) Template id 
 
@@ -644,7 +689,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter templateId: (path) Template id 
      - parameter smsTemplate: (body) Template item 
@@ -687,7 +735,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
@@ -730,7 +781,10 @@ open class SMSAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter smsTemplate: (body) SmsTemplate model 
 

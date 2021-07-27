@@ -33,7 +33,10 @@ open class TransactionalEmailAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter filename: (query) Filename to download history as 
      - parameter dateFrom: (query) Start date (optional)
@@ -81,7 +84,10 @@ open class TransactionalEmailAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter dateFrom: (query) Start date (optional)
      - parameter dateTo: (query) End date (optional)
@@ -128,7 +134,10 @@ open class TransactionalEmailAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter email: (body) Email model 
 
@@ -166,7 +175,10 @@ open class TransactionalEmailAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter email: (body) Email model 
 

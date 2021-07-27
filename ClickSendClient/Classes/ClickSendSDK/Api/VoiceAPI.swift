@@ -30,7 +30,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
 
      - returns: RequestBuilder<String> 
      */
@@ -66,7 +69,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter messageId: (path) Your voice message id 
 
@@ -107,7 +113,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter filename: (query) Filename to export to 
 
@@ -151,7 +160,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter dateFrom: (query) Timestamp (from) used to show records by date. (optional)
      - parameter dateTo: (query) Timestamp (to) used to show records by date (optional)
@@ -197,7 +209,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
 
      - returns: RequestBuilder<String> 
      */
@@ -233,7 +248,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter voiceMessages: (body) VoiceMessageCollection model 
 
@@ -272,7 +290,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
@@ -315,7 +336,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter url: (body) Url model 
 
@@ -353,7 +377,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter dateBefore: (body) DateBefore model (optional)
 
@@ -391,7 +418,10 @@ open class VoiceAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter voiceMessages: (body) VoiceMessageCollection model 
 

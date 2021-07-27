@@ -31,7 +31,10 @@ open class DetectAddressAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter uploadFile: (body) Your file to be uploaded 
 

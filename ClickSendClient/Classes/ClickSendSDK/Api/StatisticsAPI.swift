@@ -30,7 +30,10 @@ open class StatisticsAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
 
      - returns: RequestBuilder<String> 
      */
@@ -65,7 +68,10 @@ open class StatisticsAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
 
      - returns: RequestBuilder<String> 
      */

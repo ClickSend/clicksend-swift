@@ -32,7 +32,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
@@ -75,7 +78,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailAddress: (body)  (optional)
 
@@ -113,7 +119,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailCampaignId: (path) Allowed email campaign id 
 
@@ -154,7 +163,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailCampaignId: (path) Allowed email campaign id 
 
@@ -197,7 +209,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailCampaignId: (path) Allowed email campaign id 
      - parameter dateFrom: (query) Start date (optional)
@@ -248,7 +263,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailCampaignId: (path) Allowed email campaign id 
      - parameter dateFrom: (query) Start date (optional)
@@ -299,7 +317,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailCampaign: (body) Email model 
 
@@ -337,7 +358,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailCampaign: (body) Email model 
 
@@ -376,7 +400,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailCampaignId: (path) Allowed email campaign id 
      - parameter emailCampaign: (body) Email model 
@@ -419,7 +446,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
@@ -462,7 +492,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailAddressId: (path) Allowed email address id 
 
@@ -503,7 +536,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailAddressId: (path) Allowed email address id 
 
@@ -544,7 +580,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailAddressId: (path) Allowed email address id 
 
@@ -586,7 +625,10 @@ open class EmailMarketingAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter emailAddressId: (path) Allowed email address id 
      - parameter activationToken: (path) Your activation token. 

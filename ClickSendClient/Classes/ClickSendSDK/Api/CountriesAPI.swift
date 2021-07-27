@@ -27,7 +27,10 @@ open class CountriesAPI {
      Get all country codes
      - GET /countries
      - Get all countries
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
 
      - returns: RequestBuilder<String> 
      */

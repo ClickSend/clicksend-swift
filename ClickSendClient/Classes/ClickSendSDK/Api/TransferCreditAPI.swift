@@ -31,7 +31,10 @@ open class TransferCreditAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter resellerAccountTransferCredit: (body) ResellerAccountTransferCredit model 
 

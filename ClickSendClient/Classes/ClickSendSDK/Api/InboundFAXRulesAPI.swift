@@ -31,7 +31,10 @@ open class InboundFAXRulesAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter inboundRuleId: (path) Inbound rule id 
 
@@ -72,7 +75,10 @@ open class InboundFAXRulesAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter inboundRuleId: (path) Inbound rule id 
 
@@ -113,7 +119,10 @@ open class InboundFAXRulesAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter inboundFaxRule: (body) Inbound fax rule model 
 
@@ -152,7 +161,10 @@ open class InboundFAXRulesAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter inboundRuleId: (path) Inbound rule id 
      - parameter inboundFaxRule: (body) Inbound fax rule model 
@@ -196,7 +208,10 @@ open class InboundFAXRulesAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter q: (query) Your keyword or query. (optional)
      - parameter page: (query) Page number (optional, default to 1)

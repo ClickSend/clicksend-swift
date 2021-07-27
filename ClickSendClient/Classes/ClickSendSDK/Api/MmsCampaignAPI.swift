@@ -31,7 +31,10 @@ open class MmsCampaignAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter mmsCampaignId: (path) ID of MMS campaign to retrieve 
 
@@ -73,7 +76,10 @@ open class MmsCampaignAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter mmsCampaignId: (path) ID of MMS campaign to update 
      - parameter campaign: (body) MmsCampaign model 
@@ -115,7 +121,10 @@ open class MmsCampaignAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter mmsCampaignId: (path) ID of MMS Campaign to cancel 
 
@@ -157,7 +166,10 @@ open class MmsCampaignAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
@@ -200,7 +212,10 @@ open class MmsCampaignAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter campaign: (body) MmsCampaign model 
 
@@ -238,7 +253,10 @@ open class MmsCampaignAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter campaign: (body) MmsCampaign model 
 

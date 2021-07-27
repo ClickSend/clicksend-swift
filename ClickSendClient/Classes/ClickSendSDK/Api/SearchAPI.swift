@@ -33,7 +33,10 @@ open class SearchAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter q: (query) Your keyword or query. 
      - parameter page: (query) Page number (optional, default to 1)

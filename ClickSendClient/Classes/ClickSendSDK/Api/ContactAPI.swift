@@ -32,7 +32,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter listId: (path) List ID 
      - parameter contactId: (path) Contact ID 
@@ -78,7 +81,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter listId: (path) Your contact list id you want to access. 
      - parameter contactId: (path) Your contact id you want to access. 
@@ -125,7 +131,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter listId: (path) Contact list id 
      - parameter contactId: (path) Contact ID 
@@ -173,7 +182,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter listId: (path) Contact list ID 
      - parameter page: (query) Page number (optional, default to 1)
@@ -221,7 +233,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter contact: (body) Contact model 
      - parameter listId: (path) List id 
@@ -265,7 +280,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter fromListId: (path) List ID for list that contains contact. 
      - parameter contactId: (path) Contact ID 
@@ -315,7 +333,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter listId: (path) Your list id 
      - parameter optOutListId: (path) Your opt out list id 
@@ -362,7 +383,10 @@ open class ContactAPI {
      - BASIC:
        - type: basic
        - name: BasicAuth
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
      
      - parameter fromListId: (path) List ID for list that contains contact. 
      - parameter contactId: (path) Contact ID 
