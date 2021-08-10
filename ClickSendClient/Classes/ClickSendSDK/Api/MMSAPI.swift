@@ -12,6 +12,106 @@ import Alamofire
 
 open class MMSAPI {
     /**
+     Export all mms history
+     
+     - parameter filename: (query) Filename to download history as 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func mmsHistoryExportGet(filename: String, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        mmsHistoryExportGetWithRequestBuilder(filename: filename).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Export all mms history
+     - GET /mms/history/export
+     - Export all mms history
+     - BASIC:
+       - type: basic
+       - name: BasicAuth
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
+     
+     - parameter filename: (query) Filename to download history as 
+
+     - returns: RequestBuilder<String> 
+     */
+    open class func mmsHistoryExportGetWithRequestBuilder(filename: String) -> RequestBuilder<String> {
+        let path = "/mms/history/export"
+        let URLString = ClickSendClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "filename": filename
+        ])
+
+        let requestBuilder: RequestBuilder<String>.Type = ClickSendClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Get all mms history
+     
+     - parameter q: (query) Custom query Example: from:{number},status_code:201. (optional)
+     - parameter dateFrom: (query) Start date (optional)
+     - parameter dateTo: (query) End date (optional)
+     - parameter page: (query) Page number (optional, default to 1)
+     - parameter limit: (query) Number of records per page (optional, default to 10)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func mmsHistoryGet(q: String? = nil, dateFrom: Int? = nil, dateTo: Int? = nil, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        mmsHistoryGetWithRequestBuilder(q: q, dateFrom: dateFrom, dateTo: dateTo, page: page, limit: limit).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get all mms history
+     - GET /mms/history
+     - Get all mms history
+     - BASIC:
+       - type: basic
+       - name: BasicAuth
+     - examples: [{contentType=application/json, example={
+  "bytes": [],
+  "empty": true
+}}]
+     
+     - parameter q: (query) Custom query Example: from:{number},status_code:201. (optional)
+     - parameter dateFrom: (query) Start date (optional)
+     - parameter dateTo: (query) End date (optional)
+     - parameter page: (query) Page number (optional, default to 1)
+     - parameter limit: (query) Number of records per page (optional, default to 10)
+
+     - returns: RequestBuilder<String> 
+     */
+    open class func mmsHistoryGetWithRequestBuilder(q: String? = nil, dateFrom: Int? = nil, dateTo: Int? = nil, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+        let path = "/mms/history"
+        let URLString = ClickSendClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "q": q, 
+            "date_from": dateFrom?.encodeToJSON(), 
+            "date_to": dateTo?.encodeToJSON(), 
+            "page": page?.encodeToJSON(), 
+            "limit": limit?.encodeToJSON()
+        ])
+
+        let requestBuilder: RequestBuilder<String>.Type = ClickSendClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
      Get Price for MMS sent
      
      - parameter mmsMessages: (body) MmsMessageCollection model 
