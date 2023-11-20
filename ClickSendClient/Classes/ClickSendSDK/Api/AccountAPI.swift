@@ -31,6 +31,7 @@ open class AccountAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -70,6 +71,7 @@ open class AccountAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -112,6 +114,7 @@ open class AccountAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -160,6 +163,7 @@ open class AccountAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -201,6 +205,7 @@ open class AccountAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -245,6 +250,7 @@ open class AccountAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -286,6 +292,7 @@ open class AccountAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -324,6 +331,7 @@ open class AccountAPI {
      - PUT /forgot-username
      - Forgot username
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]

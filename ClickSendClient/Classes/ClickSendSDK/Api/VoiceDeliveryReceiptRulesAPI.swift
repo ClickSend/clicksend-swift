@@ -32,6 +32,7 @@ open class VoiceDeliveryReceiptRulesAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -76,6 +77,7 @@ open class VoiceDeliveryReceiptRulesAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -120,6 +122,7 @@ open class VoiceDeliveryReceiptRulesAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -162,6 +165,7 @@ open class VoiceDeliveryReceiptRulesAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -209,6 +213,7 @@ open class VoiceDeliveryReceiptRulesAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
