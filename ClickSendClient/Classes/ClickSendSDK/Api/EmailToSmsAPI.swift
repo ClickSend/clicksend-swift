@@ -33,6 +33,7 @@ open class EmailToSmsAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -79,6 +80,7 @@ open class EmailToSmsAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -120,6 +122,7 @@ open class EmailToSmsAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -164,6 +167,7 @@ open class EmailToSmsAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -208,6 +212,7 @@ open class EmailToSmsAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -250,6 +255,7 @@ open class EmailToSmsAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -296,6 +302,7 @@ open class EmailToSmsAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
