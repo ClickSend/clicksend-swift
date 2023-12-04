@@ -28,6 +28,7 @@ open class CountriesAPI {
      - GET /countries
      - Get all countries
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]

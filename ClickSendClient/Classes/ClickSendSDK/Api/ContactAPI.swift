@@ -33,6 +33,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -82,6 +83,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -132,6 +134,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -166,10 +169,11 @@ open class ContactAPI {
      - parameter listId: (path) Contact list ID 
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
+     - parameter updatedAfter: (query) Get all contacts updated after a given timestamp. (optional, default to 10)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func listsContactsByListIdGet(listId: Int, page: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
-        listsContactsByListIdGetWithRequestBuilder(listId: listId, page: page, limit: limit).execute { (response, error) -> Void in
+    open class func listsContactsByListIdGet(listId: Int, page: Int? = nil, limit: Int? = nil, updatedAfter: Int? = nil, completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
+        listsContactsByListIdGetWithRequestBuilder(listId: listId, page: page, limit: limit, updatedAfter: updatedAfter).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -183,6 +187,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -190,10 +195,11 @@ open class ContactAPI {
      - parameter listId: (path) Contact list ID 
      - parameter page: (query) Page number (optional, default to 1)
      - parameter limit: (query) Number of records per page (optional, default to 10)
+     - parameter updatedAfter: (query) Get all contacts updated after a given timestamp. (optional, default to 10)
 
      - returns: RequestBuilder<String> 
      */
-    open class func listsContactsByListIdGetWithRequestBuilder(listId: Int, page: Int? = nil, limit: Int? = nil) -> RequestBuilder<String> {
+    open class func listsContactsByListIdGetWithRequestBuilder(listId: Int, page: Int? = nil, limit: Int? = nil, updatedAfter: Int? = nil) -> RequestBuilder<String> {
         var path = "/lists/{list_id}/contacts"
         let listIdPreEscape = "\(listId)"
         let listIdPostEscape = listIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -204,7 +210,8 @@ open class ContactAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "page": page?.encodeToJSON(), 
-            "limit": limit?.encodeToJSON()
+            "limit": limit?.encodeToJSON(), 
+            "updated_after": updatedAfter?.encodeToJSON()
         ])
 
         let requestBuilder: RequestBuilder<String>.Type = ClickSendClientAPI.requestBuilderFactory.getBuilder()
@@ -234,6 +241,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -281,6 +289,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -334,6 +343,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
@@ -384,6 +394,7 @@ open class ContactAPI {
        - type: basic
        - name: BasicAuth
      - examples: [{contentType=application/json, example={
+  "blank": true,
   "bytes": [],
   "empty": true
 }}]
